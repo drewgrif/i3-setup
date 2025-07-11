@@ -13,7 +13,7 @@ keybindings=$(awk '
 formatted_keybindings=$(echo "$keybindings" | column -t -s '|')
 
 # Show in rofi and capture the selected line
-selected=$(echo "$formatted_keybindings" | rofi -dmenu -i -p "Keybindings" -line-padding 4 -hide-scrollbar -theme ~/.config/bspwm/rofi/keybinds.rasi)
+selected=$(echo "$formatted_keybindings" | rofi -dmenu -i -p "Keybindings" -line-padding 4 -hide-scrollbar -theme ~/.config/i3/rofi/keybinds.rasi)
 
 # Execute the selected keybinding's command (if needed)
 if [ -n "$selected" ]; then
