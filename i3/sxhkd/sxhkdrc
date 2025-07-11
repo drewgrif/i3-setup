@@ -1,0 +1,303 @@
+# Launch Browser (Firefox)
+super + b
+	firefox 
+
+# Launch Private Browser (Firefox Incognito Mode)
+super + shift + b
+	firefox -private-window
+
+# Launch Terminal (Wezterm)
+super + Return
+	wezterm
+
+# Toggle Scratchpad Terminal
+super + shift + Return
+	~/.config/i3/scripts/scratchpad
+
+# Launch Rofi Application Menu
+super + space
+   	rofi -show drun -modi drun -line-padding 4 -hide-scrollbar -show-icons -theme ~/.config/i3/rofi/config.rasi
+
+# Launch File Manager (Thunar)
+super + f
+	thunar
+
+# Launch Geany (Text Editor)
+super + e
+	geany
+
+# Launch GIMP (Image Editor)
+super + g
+	gimp
+
+# Launch Pulsemixer (Audio Mixer)
+super + v
+	~/.config/i3/scripts/scratchpad pulsemixer pulsemixer
+
+# Show Keybinding Help Script
+super + h
+	~/.config/i3/scripts/help
+ 
+# Take a Screenshot (Region Select)
+super + Print
+	flameshot gui --path ~/Screenshots/
+
+# Take a Fullscreen Screenshot
+Print
+	flameshot full --path ~/Screenshots/
+
+# Switch to Workspace 1
+super + 1
+	i3-msg workspace 1
+
+# Switch to Workspace 2
+super + 2
+	i3-msg workspace 2
+
+# Switch to Workspace 3
+super + 3
+	i3-msg workspace 3
+
+# Switch to Workspace 4
+super + 4
+	i3-msg workspace 4
+
+# Switch to Workspace 5
+super + 5
+	i3-msg workspace 5
+
+# Switch to Workspace 6
+super + 6
+	i3-msg workspace 6
+
+# Switch to Workspace 7
+super + 7
+	i3-msg workspace 7
+
+# Switch to Workspace 8
+super + 8
+	i3-msg workspace 8
+
+# Switch to Workspace 9
+super + 9
+	i3-msg workspace 9
+
+# Switch to Workspace 10
+super + 0
+	i3-msg workspace 10
+
+# Move to Workspace 1
+super + shift + 1
+	i3-msg move container to workspace number 1
+
+# Move to Workspace 2
+super + shift + 2
+	i3-msg move container to workspace number 2
+
+# Move to Workspace 3
+super + shift + 3
+	i3-msg move container to workspace number 3
+
+# Move to Workspace 4
+super + shift + 4
+	i3-msg move container to workspace number 4
+
+# Move to Workspace 5
+super + shift + 5
+	i3-msg move container to workspace number 5
+
+# Move to Workspace 6
+super + shift + 6
+	i3-msg move container to workspace number 6
+
+# Move to Workspace 7
+super + shift + 7
+	i3-msg move container to workspace number 7
+
+# Move to Workspace 8
+super + shift + 8
+	i3-msg move container to workspace number 8
+
+# Move to Workspace 9
+super + shift + 9
+	i3-msg move container to workspace number 9
+
+# Move to Workspace 10
+super + shift + 0
+	i3-msg move container to workspace number 10
+
+# Focus Left
+super + h
+	i3-msg focus left
+
+# Focus Down
+super + j
+	i3-msg focus down
+
+# Focus Up
+super + k
+	i3-msg focus up
+
+# Focus Right
+super + l
+	i3-msg focus right
+
+# Move Window Left
+super + shift + h
+	i3-msg move left
+
+# Move Window Down
+super + shift + j
+	i3-msg move down
+
+# Move Window Up
+super + shift + k
+	i3-msg move up
+
+# Move Window Right
+super + shift + l
+	i3-msg move right
+
+# Focus Left (Arrow)
+super + Left
+	i3-msg focus left
+
+# Focus Down (Arrow)
+super + Down
+	i3-msg focus down
+
+# Focus Up (Arrow)
+super + Up
+	i3-msg focus up
+
+# Focus Right (Arrow)
+super + Right
+	i3-msg focus right
+
+# Move Window Left (Arrow)
+super + shift + Left
+	i3-msg move left
+
+# Move Window Down (Arrow)
+super + shift + Down
+	i3-msg move down
+
+# Move Window Up (Arrow)
+super + shift + Up
+	i3-msg move up
+
+# Move Window Right (Arrow)
+super + shift + Right
+	i3-msg move right
+
+# Volume Up
+super + Insert
+	~/.config/i3/scripts/changevolume up
+    
+# Volume Down
+super + Delete
+	~/.config/i3/scripts/changevolume down
+	
+# Toggle Mute
+super + m
+	~/.config/i3/scripts/changevolume mute
+	
+# Volume Up (Media Key)
+XF86AudioRaiseVolume
+	pamixer -i 2
+
+# Volume Down (Media Key)
+XF86AudioLowerVolume
+	pamixer -d 2
+
+# Brightness Up (Media Key)
+XF86MonBrightnessUp
+	xbacklight +10
+
+# Brightness Down (Media Key)
+XF86MonBrightnessDown
+	xbacklight -10
+
+# Reload sxhkd Config
+super + Escape
+	pkill -USR1 -x sxhkd; notify-send 'sxhkd' 'Reloaded config'
+
+# Toggle Fullscreen
+super + alt + f
+	i3-msg fullscreen toggle
+
+# Toggle Floating
+super + shift + space
+	i3-msg floating toggle
+
+# Toggle Focus (Tiling/Floating)
+super + control + space
+	i3-msg focus mode_toggle
+
+# Focus Parent Container
+super + alt + a
+	i3-msg focus parent
+    
+# Exit i3
+super + shift + q
+	i3-msg exit
+
+# Close Window
+super + q
+	i3-msg kill
+
+# Reload i3 Config
+super + shift + c
+	i3-msg reload
+
+# Restart i3
+super + shift + r
+	i3-msg restart; notify-send 'i3' 'Restarted'
+
+# Resize Grow Width
+super + ctrl + Left
+	i3-msg resize grow width 3 px or 3 ppt
+
+# Resize Shrink Height
+super + ctrl + Down
+	i3-msg resize shrink height 3 px or 3 ppt
+
+# Resize Grow Height
+super + ctrl + Up
+	i3-msg resize grow height 3 px or 3 ppt
+
+# Resize Shrink Width
+super + ctrl + Right
+	i3-msg resize shrink width 3 px or 3 ppt
+
+# Layout Stacking
+super + s
+	i3-msg layout stacking
+
+# Layout Tabbed
+super + w
+	i3-msg layout tabbed
+
+# Layout Toggle Split
+super + t
+	i3-msg layout toggle split
+
+# Split Vertical
+super + alt + v
+	i3-msg split v
+
+# Split Horizontal
+super + alt + z
+	i3-msg split h
+
+# Move to Scratchpad
+super + minus
+	i3-msg move scratchpad; i3-msg scratchpad show, resize set 1200 800, move position center
+
+# Show/Hide Scratchpad
+super + equal
+	i3-msg scratchpad show
+
+# Move Scratchpad Back to Tiling
+super + shift + equal
+	i3-msg floating disable

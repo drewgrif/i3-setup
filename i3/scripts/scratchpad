@@ -1,0 +1,121 @@
+#!/bin/bash
+
+# Scratchpad terminal toggle script for i3
+# Usage: scratchpad [app_name] [app_command]
+# Examples:
+#   scratchpad                    # Default terminal scratchpad
+#   scratchpad pulsemixer         # Pulsemixer scratchpad
+#   scratchpad htop htop          # htop scratchpad
+
+APP_NAME="${1:-scratchpad}"
+APP_COMMAND="${2:-}"
+SCRATCHPAD_CLASS="$APP_NAME"
+
+# Function to find available terminal emulator
+get_terminal() {
+    # Check for user-defined scratchpad terminal first
+    if [ -n "$I3_SCRATCHPAD_TERMINAL" ] && command -v "$I3_SCRATCHPAD_TERMINAL" >/dev/null 2>&1; then
+        echo "$I3_SCRATCHPAD_TERMINAL"
+        return
+    fi
+    
+    # Default to st for scratchpad if available (lightweight and fast)
+    if command -v st >/dev/null 2>&1; then
+        echo "st"
+        return
+    fi
+    
+    # Fall back to other terminals if st not available
+    for term in ghostty alacritty kitty wezterm xfce4-terminal gnome-terminal konsole urxvt; do
+        if command -v "$term" >/dev/null 2>&1; then
+            echo "$term"
+            return
+        fi
+    done
+    
+    # If no terminal found, notify user and exit
+    notify-send "Error" "No terminal emulator found. Please install st or set I3_SCRATCHPAD_TERMINAL environment variable."
+    exit 1
+}
+
+# Get the terminal command
+TERMINAL_CMD=$(get_terminal)
+
+# Build the full terminal command with class option
+case "$TERMINAL_CMD" in
+    st|urxvt)
+        if [ -n "$APP_COMMAND" ]; then
+            TERMINAL="$TERMINAL_CMD -c $SCRATCHPAD_CLASS -e $APP_COMMAND"
+        else
+            TERMINAL="$TERMINAL_CMD -c $SCRATCHPAD_CLASS"
+        fi
+        ;;
+    alacritty)
+        if [ -n "$APP_COMMAND" ]; then
+            TERMINAL="$TERMINAL_CMD --class $SCRATCHPAD_CLASS -e $APP_COMMAND"
+        else
+            TERMINAL="$TERMINAL_CMD --class $SCRATCHPAD_CLASS"
+        fi
+        ;;
+    kitty)
+        if [ -n "$APP_COMMAND" ]; then
+            TERMINAL="$TERMINAL_CMD --class $SCRATCHPAD_CLASS $APP_COMMAND"
+        else
+            TERMINAL="$TERMINAL_CMD --class $SCRATCHPAD_CLASS"
+        fi
+        ;;
+    wezterm)
+        if [ -n "$APP_COMMAND" ]; then
+            TERMINAL="$TERMINAL_CMD start --class $SCRATCHPAD_CLASS -- $APP_COMMAND"
+        else
+            TERMINAL="$TERMINAL_CMD start --class $SCRATCHPAD_CLASS"
+        fi
+        ;;
+    ghostty)
+        if [ -n "$APP_COMMAND" ]; then
+            TERMINAL="$TERMINAL_CMD --class=$SCRATCHPAD_CLASS -e $APP_COMMAND"
+        else
+            TERMINAL="$TERMINAL_CMD --class=$SCRATCHPAD_CLASS"
+        fi
+        ;;
+    xfce4-terminal)
+        if [ -n "$APP_COMMAND" ]; then
+            TERMINAL="$TERMINAL_CMD --class=$SCRATCHPAD_CLASS -e $APP_COMMAND"
+        else
+            TERMINAL="$TERMINAL_CMD --class=$SCRATCHPAD_CLASS"
+        fi
+        ;;
+    gnome-terminal)
+        if [ -n "$APP_COMMAND" ]; then
+            TERMINAL="$TERMINAL_CMD --class=$SCRATCHPAD_CLASS -- $APP_COMMAND"
+        else
+            TERMINAL="$TERMINAL_CMD --class=$SCRATCHPAD_CLASS"
+        fi
+        ;;
+    konsole)
+        if [ -n "$APP_COMMAND" ]; then
+            TERMINAL="$TERMINAL_CMD --class $SCRATCHPAD_CLASS -e $APP_COMMAND"
+        else
+            TERMINAL="$TERMINAL_CMD --class $SCRATCHPAD_CLASS"
+        fi
+        ;;
+    *)
+        # For unknown terminals, try common syntax
+        if [ -n "$APP_COMMAND" ]; then
+            TERMINAL="$TERMINAL_CMD --class $SCRATCHPAD_CLASS -e $APP_COMMAND"
+        else
+            TERMINAL="$TERMINAL_CMD --class $SCRATCHPAD_CLASS"
+        fi
+        ;;
+esac
+
+# Check if scratchpad window exists
+id=$(xdotool search --class "$SCRATCHPAD_CLASS")
+
+if [ -z "$id" ]; then
+    # Launch scratchpad if it doesn't exist
+    $TERMINAL &
+else
+    # Toggle visibility if it exists
+    i3-msg "[class=\"$SCRATCHPAD_CLASS\"] scratchpad show"
+fi
