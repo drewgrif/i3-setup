@@ -7,7 +7,7 @@ Installs all core packages, window manager configs, and themes — ready to go o
 
 > Part of the [JustAGuy Linux](https://github.com/drewgrif) window manager collection.
 
-![2025-03-29_10-51](https://github.com/user-attachments/assets/f4a32241-f780-4487-98af-f2b85525c5ee)
+<img width="3440" height="1440" alt="2025-07-11_17-26" src="https://github.com/user-attachments/assets/6aaa3bd2-298e-4a7a-a08d-318988b49a09" />
 
 ---
 
