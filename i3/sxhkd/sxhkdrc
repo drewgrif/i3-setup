@@ -37,6 +37,10 @@ super + v
 # Show Keybinding Help Script
 super + h
 	~/.config/i3/scripts/help
+    
+# Paste to note (bashrc note)   
+super + shift + v
+    bash -ic 'note clip && notify-send " Clipboard saved to notes"'
  
 # Take a Screenshot (Region Select)
 super + Print
