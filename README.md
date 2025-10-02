@@ -1,11 +1,24 @@
 # 🪟 i3-setup
 
+> **🚨 REPOSITORY MIGRATION NOTICE**
+>
+> This repository has moved to **[Codeberg](https://codeberg.org/justaguylinux/i3-setup)**
+>
+> - **Primary repository**: https://codeberg.org/justaguylinux/i3-setup
+> - **This GitHub repository**: Mirror only (read-only)
+> - **Migration deadline**: December 15, 2025 - GitHub mirror will be archived
+>
+> Please update your bookmarks and git remotes:
+> ```bash
+> git remote set-url origin https://codeberg.org/justaguylinux/i3-setup.git
+> ```
+
 ![Made for Debian](https://img.shields.io/badge/Made%20for-Debian-A81D33?style=for-the-badge&logo=debian&logoColor=white)
 
-A minimal but functional i3 rice script for Debian-based systems.  
+A minimal but functional i3 rice script for Debian-based systems.
 Installs all core packages, window manager configs, and themes — ready to go out of the box.
 
-> Part of the [JustAGuy Linux](https://github.com/drewgrif) window manager collection.
+> Part of the [JustAGuy Linux](https://codeberg.org/justaguylinux) window manager collection.
 
 <img width="3440" height="1440" alt="2025-07-11_17-26" src="https://github.com/user-attachments/assets/6aaa3bd2-298e-4a7a-a08d-318988b49a09" />
 
@@ -15,7 +28,7 @@ Installs all core packages, window manager configs, and themes — ready to go o
 
 ### Quick Install
 ```bash
-git clone https://github.com/drewgrif/i3-setup.git
+git clone https://codeberg.org/justaguylinux/i3-setup.git
 cd i3-setup
 chmod +x install.sh
 ./install.sh
